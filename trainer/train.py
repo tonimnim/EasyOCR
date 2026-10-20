@@ -45,8 +45,8 @@ def train(opt, show_number = 2, amp=False):
     valid_loader = torch.utils.data.DataLoader(
         valid_dataset, batch_size=min(32, opt.batch_size),
         shuffle=True,  # 'True' to check training progress with validation function.
-        num_workers=int(opt.workers), prefetch_factor=512,
-        collate_fn=AlignCollate_valid, pin_memory=True)
+        num_workers=int(opt.workers), prefetch_factor=512 if int(opt.workers) > 0 else None,
+        collate_fn=AlignCollate_valid, pin_memory=torch.cuda.is_available())
     log.write(valid_dataset_log)
     print('-' * 80)
     log.write('-' * 80 + '\n')
@@ -67,7 +67,7 @@ def train(opt, show_number = 2, amp=False):
           opt.SequenceModeling, opt.Prediction)
 
     if opt.saved_model != '':
-        pretrained_dict = torch.load(opt.saved_model)
+        pretrained_dict = torch.load(opt.saved_model, map_location=device)
         if opt.new_prediction:
             model.Prediction = nn.Linear(model.SequenceModeling_output, len(pretrained_dict['module.Prediction.weight']))  
         
