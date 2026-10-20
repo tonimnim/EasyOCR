@@ -1,0 +1,45 @@
+# Fine-tune an EasyOCR generation-2 recognizer on eFootball Full Time screens.
+# Run through tonits_vision/training/finetune.py, which fills in the character set from the base model
+# (so the prediction layer is kept) and the data paths.
+experiment_name: 'efootball'
+base_model: 'latin_g2'  # has accented letters (Martínez, Atlético); english_g2 doesn't
+train_data: 'tonits_vision/data/synth/crops'  # paths are relative to the repo root
+valid_data: 'tonits_vision/data/synth/crops/efootball_synth_val'
+select_data: 'efootball_synth_train'  # add real crops with e.g. 'efootball_synth_train-efootball_real_train'
+batch_ratio: '1'                      # and '0.5-0.5'
+manualSeed: 1111
+workers: 2
+batch_size: 32
+num_iter: 20000
+valInterval: 1000
+saved_model: ''  # filled in from base_model
+FT: True
+optim: False  # Adadelta
+lr: 1.
+beta1: 0.9
+rho: 0.95
+eps: 0.00000001
+grad_clip: 5
+# Data processing
+total_data_usage_ratio: 1.0
+batch_max_length: 34
+imgH: 64
+imgW: 600
+rgb: False
+sensitive: True
+PAD: True
+contrast_adjust: 0.0
+data_filtering_off: False
+# Model architecture: must match generation 2 (None-VGG-BiLSTM-CTC, 256/256)
+Transformation: 'None'
+FeatureExtraction: 'VGG'
+SequenceModeling: 'BiLSTM'
+Prediction: 'CTC'
+num_fiducial: 20
+input_channel: 1
+output_channel: 256
+hidden_size: 256
+decode: 'greedy'
+new_prediction: False
+freeze_FeatureFxtraction: False
+freeze_SequenceModeling: False
