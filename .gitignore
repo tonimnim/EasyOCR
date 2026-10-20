@@ -107,3 +107,11 @@ ENV/
 .vscode/
 .vs/
 .idea/
+
+# tonits_vision: generated datasets, training runs, evaluation reports, exported models (build inputs
+# that tonits_vision/Dockerfile copies in) and real screenshots (players' team names stay out of git)
+tonits_vision/data/
+tonits_vision/runs/
+tonits_vision/reports/
+tonits_vision/models/
+tonits_vision/samples/
