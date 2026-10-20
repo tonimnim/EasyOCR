@@ -1,5 +1,6 @@
 """
-End-to-End Multi-Lingual Optical Character Recognition (OCR) Solution
+The OCR engine behind the Tonits eFootball screenshot reader (tonits_vision): EasyOCR's CRAFT detector
+and generation-2 recognizers, trimmed to English.
 """
 from io import open
 from setuptools import setup
@@ -20,14 +21,15 @@ setup(
     install_requires=requirements,
     entry_points={"console_scripts": ["easyocr= easyocr.cli:main"]},
     license='Apache License 2.0',
-    description='End-to-End Multi-Lingual Optical Character Recognition (OCR) Solution',
+    description='EasyOCR engine trimmed for the Tonits eFootball screenshot reader',
     long_description=readme(),
     long_description_content_type="text/markdown",
-    author='Rakpong Kittinaradorn',
+    author='Rakpong Kittinaradorn (EasyOCR)',
     author_email='r.kittinaradorn@gmail.com',
-    url='https://github.com/jaidedai/easyocr',
-    download_url='https://github.com/jaidedai/easyocr.git',
-    keywords=['ocr optical character recognition deep learning neural network'],
+    maintainer='tonimnim',
+    url='https://github.com/tonimnim/EasyOCR',
+    download_url='https://github.com/tonimnim/EasyOCR.git',
+    keywords=['ocr', 'efootball', 'screenshot', 'tonits'],
     classifiers=[
         'Development Status :: 5 - Production/Stable'
     ],
