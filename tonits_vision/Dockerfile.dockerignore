@@ -1,0 +1,22 @@
+# Build context for tonits_vision/Dockerfile (BuildKit reads <Dockerfile>.dockerignore). Allowlist: only
+# what the image installs or runs.
+*
+!setup.py
+!setup.cfg
+!MANIFEST.in
+!README.md
+!requirements.txt
+!easyocr
+!tonits_vision
+
+# The reader reads English only; the other languages' word lists are ~300 MB.
+easyocr/dict/*
+!easyocr/dict/en.txt
+tonits_vision/data
+tonits_vision/runs
+tonits_vision/reports
+tonits_vision/synth
+tonits_vision/training
+tonits_vision/tests
+**/__pycache__
+**/*.pyc
