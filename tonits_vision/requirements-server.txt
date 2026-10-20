@@ -13,7 +13,6 @@ python-bidi==0.6.11
 PyYAML==6.0.3
 shapely==2.2.0
 pyclipper==1.4.0
-ninja==1.13.2
 
 # torch (transitive)
 filelock==3.32.3
